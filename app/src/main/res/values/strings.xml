@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Class11-4</string>
+    <string name="txtOpening">I DARE YOU TO TOUCH ME</string>
+    <string name="txtOnClickText">Please. Do not touch the button.</string>
+    <string name="k">NO YOU DIDN\'T!! YOU CLICKED</string>
+    <string name="t">TIMES</string>
+    <string name="this_is_a_subtitle">this is a subtitle</string>
+</resources>
