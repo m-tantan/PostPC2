@@ -1,5 +1,7 @@
 package recklessengineerlabs.class11_4;
 
+import android.annotation.SuppressLint;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -13,6 +15,7 @@ public class Message
     {
     }
 
+    @SuppressLint("SimpleDateFormat")
     public Message(String sender, String message)
     {
         this.sender = sender;

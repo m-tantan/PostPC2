@@ -1,10 +1,12 @@
 package recklessengineerlabs.class11_4;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,14 +18,17 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity
 {
     ListView mListView;
     EditText messageText;
     Button sendButton;
-    List<Message> messages;
+    ArrayList<Message> messages;
     private RecyclerView recyclerView;
     private RecyclerViewAdapter adapter;
     private ImageButton btnImage;
@@ -34,7 +39,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         messageText = findViewById(R.id.input);
         btnImage = findViewById(R.id.imgButton);
-
         //Testing Date and time extraction
 //        messageText.setText(new SimpleDateFormat("HH:mm dd/MM").format(Calendar.getInstance().getTime()));
         initRecycleView();
@@ -43,60 +47,39 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Log.d("Clicked", "clicked");
+                Log.d("Testing Program", "clicked send button");
+                Log.d("Testing Program", "Input text is: " + messageText.getText().toString());
+                Log.d("Testing Program", "Amount of messages is: " + ((int) messages.size()));
                 messages.add(new Message("You", messageText.getText().toString()));
+                messageText.setText("");
             }
         });
 
     }
 
+    @Override
+    public View onCreateView(View parent, String name, Context context, AttributeSet attrs)
+    {
+        messages = new ArrayList<Message>();
+        return super.onCreateView(parent, name, context, attrs);
+
+    }
+
+
+
+
     private void initRecycleView()
     {
-        recyclerView = findViewById(R.id.recyclerView);
-        LinearLayoutManager LLmanager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(LLmanager);
-        adapter = new RecyclerViewAdapter(messages, this);
-        recyclerView.setAdapter(adapter);
+        if(recyclerView == null)
+            recyclerView = findViewById(R.id.recyclerView);
+            LinearLayoutManager LLmanager = new LinearLayoutManager(this);
+            recyclerView.setLayoutManager(LLmanager);
+            adapter = new RecyclerViewAdapter(messages, this);
+            recyclerView.setAdapter(adapter);
+
+
 
     }
 
-
-    public static class Pojo
-    {
-        String mTitle;
-        String mSubtitle;
-
-        public Pojo(String mTitle, String mSubtitle)
-        {
-            this.mTitle = mTitle;
-            this.mSubtitle = mSubtitle;
-        }
-
-        public String getmTitle()
-        {
-            return mTitle;
-        }
-
-        public String getmSubtitle()
-        {
-            return mSubtitle;
-        }
-
-        public static List<Pojo> getListOfThings()
-        {
-            List<Pojo> returnVal = new ArrayList<>();
-            for (int i = 0; i < 15; i++)
-            {
-                Pojo pojo = new Pojo("title # " + i, "Subtitle #" + (i * i));
-                returnVal.add(pojo);
-            }
-            return returnVal;
-        }
-
-    }
-
-    // Todo implement self chat
-    // Todo read on recycler VIEW
-    // Todo read the Slide on facebook.
-    // Chat Hass youtube - Animation in recycler view.
+    // Todo look up Chat Hass youtube - Animation in recycler view.
 }

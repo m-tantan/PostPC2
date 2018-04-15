@@ -7,16 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>
 {
-    List<Message> messages;
+    ArrayList<Message> messages;
     Context mContext;
 
     public RecyclerViewAdapter(List<Message> messages, Context mContext)
     {
-        this.messages = messages;
+        this.messages = (ArrayList<Message>) messages;
         this.mContext = mContext;
     }
 

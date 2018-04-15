@@ -21,16 +21,15 @@
     <ImageButton
         android:id="@+id/imgButton"
         android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/input"
         android:layout_alignParentBottom="true"
         android:layout_width="@dimen/height_of_send_button"
         android:layout_height="@dimen/height_of_send_button"
         android:src="@android:drawable/ic_menu_send"/>
 
-
-
-    <view
-        class="android.support.v7.app.AlertController$RecycleListView"
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
+        android:layout_above="@+id/input"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
