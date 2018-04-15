@@ -15,22 +15,19 @@
     <EditText
         android:id="@+id/input"
         android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="wrap_content" />
 
     <ImageButton
         android:id="@+id/imgButton"
-        android:layout_above="@id/btnSend"
-        android:layout_alignEnd="@id/btnSend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/btnSend"
-
-        android:layout_alignEnd="@id/listview"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="@dimen/height_of_send_button"
+        android:layout_height="@dimen/height_of_send_button"
+        android:src="@android:drawable/ic_menu_send"/>
+
+
+
     <view
         class="android.support.v7.app.AlertController$RecycleListView"
         android:id="@+id/recyclerView"
