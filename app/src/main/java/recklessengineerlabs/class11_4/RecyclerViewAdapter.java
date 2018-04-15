@@ -35,7 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     {
         holder.tv_sender.setText(messages.get(position).getSender());
         holder.tv_message.setText(messages.get(position).getMessage());
-
+        holder.tv_dateTime.setText(messages.get(position).getTimeStamp());
     }
 
     @Override
@@ -44,7 +44,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return messages.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder
+    {
 
         public TextView tv_message;
         public TextView tv_sender;

@@ -6,20 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ListView
-        android:id="@+id/listview"
-        android:layout_above="@+id/input"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <EditText
         android:id="@+id/input"
+
         android:layout_alignParentBottom="true"
         android:layout_width="320dp"
         android:layout_height="wrap_content" />
 
     <ImageButton
         android:id="@+id/imgButton"
+
         android:layout_alignParentEnd="true"
         android:layout_toRightOf="@+id/input"
         android:layout_alignParentBottom="true"
@@ -30,6 +26,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_above="@+id/input"
+        android:clipToPadding="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

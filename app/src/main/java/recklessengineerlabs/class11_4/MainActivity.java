@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -28,10 +29,12 @@ public class MainActivity extends AppCompatActivity
     ListView mListView;
     EditText messageText;
     Button sendButton;
+    static int msgCounter = 1;
     ArrayList<Message> messages;
     private RecyclerView recyclerView;
     private RecyclerViewAdapter adapter;
     private ImageButton btnImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -49,9 +52,13 @@ public class MainActivity extends AppCompatActivity
             {
                 Log.d("Testing Program", "clicked send button");
                 Log.d("Testing Program", "Input text is: " + messageText.getText().toString());
-                Log.d("Testing Program", "Amount of messages is: " + ((int) messages.size()));
+                Log.d("Testing Program", "Amount of messages is: " + ( messages.size()));
                 messages.add(new Message("You", messageText.getText().toString()));
                 messageText.setText("");
+                adapter.notifyItemInserted(msgCounter - 1);
+
+                Toast.makeText(getApplicationContext(), "added message number: " + String.valueOf(messages.size()) , Toast.LENGTH_SHORT).show();
+                msgCounter ++;
             }
         });
 
@@ -65,20 +72,15 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
-
-
     private void initRecycleView()
     {
-        if(recyclerView == null)
-            recyclerView = findViewById(R.id.recyclerView);
-            LinearLayoutManager LLmanager = new LinearLayoutManager(this);
-            recyclerView.setLayoutManager(LLmanager);
-            adapter = new RecyclerViewAdapter(messages, this);
-            recyclerView.setAdapter(adapter);
-
-
-
+        recyclerView = findViewById(R.id.recyclerView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        adapter = new RecyclerViewAdapter(messages, this);
+        recyclerView.setAdapter(adapter);
     }
 
     // Todo look up Chat Hass youtube - Animation in recycler view.
