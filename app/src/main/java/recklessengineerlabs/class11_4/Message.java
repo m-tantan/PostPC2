@@ -3,14 +3,15 @@ package recklessengineerlabs.class11_4;
 import android.annotation.SuppressLint;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Message
 {
     String sender;
     String message;
-    String timeStamp;
-
+    private String timeStamp;
+    public static ArrayList<Message> messages = new ArrayList<>();
     public Message()
     {
     }
@@ -21,6 +22,12 @@ public class Message
         this.sender = sender;
         this.message = message;
         this.timeStamp = new SimpleDateFormat("HH:mm dd/MM").format(Calendar.getInstance().getTime());
+
+//        addMessage(this);
+    }
+
+    public static void addMessage(Message msg){
+        messages.add(msg);
     }
 
     // Getters

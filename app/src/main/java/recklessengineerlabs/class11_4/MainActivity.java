@@ -26,14 +26,10 @@ import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity
 {
-    ListView mListView;
     EditText messageText;
-    Button sendButton;
     static int msgCounter = 1;
-    ArrayList<Message> messages;
-    private RecyclerView recyclerView;
+
     private RecyclerViewAdapter adapter;
-    private ImageButton btnImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,47 +37,37 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         messageText = findViewById(R.id.input);
-        btnImage = findViewById(R.id.imgButton);
-        //Testing Date and time extraction
-//        messageText.setText(new SimpleDateFormat("HH:mm dd/MM").format(Calendar.getInstance().getTime()));
+        ImageButton btnImage = findViewById(R.id.imgButton);
         initRecycleView();
         btnImage.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                Log.d("Testing Program", "clicked send button");
-                Log.d("Testing Program", "Input text is: " + messageText.getText().toString());
-                Log.d("Testing Program", "Amount of messages is: " + ( messages.size()));
-                messages.add(new Message("You", messageText.getText().toString()));
-                messageText.setText("");
-                adapter.notifyItemInserted(msgCounter - 1);
+                // Creates a new message and adds it
+                Message message = new Message("You", messageText.getText().toString());
+                Message.addMessage(message);
 
-                Toast.makeText(getApplicationContext(), "added message number: " + String.valueOf(messages.size()) , Toast.LENGTH_SHORT).show();
+                // Resets text box to be empty.
+                messageText.setText("");
+
+                //Updating for the Recycler view
+                adapter.notifyItemInserted(msgCounter - 1);
                 msgCounter ++;
             }
         });
 
     }
 
-    @Override
-    public View onCreateView(View parent, String name, Context context, AttributeSet attrs)
-    {
-        messages = new ArrayList<Message>();
-        return super.onCreateView(parent, name, context, attrs);
-
-    }
 
     private void initRecycleView()
     {
-        recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
-        adapter = new RecyclerViewAdapter(messages, this);
+        adapter = new RecyclerViewAdapter(Message.messages, this);
         recyclerView.setAdapter(adapter);
     }
-
-    // Todo look up Chat Hass youtube - Animation in recycler view.
 }

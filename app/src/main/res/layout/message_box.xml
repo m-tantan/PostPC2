@@ -3,14 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="5dp"
+    android:paddingBottom="2dp"
     xmlns:tools="http://schemas.android.com/tools">
 
 
 
     <TextView
         android:id="@+id/sender"
+
         android:layout_alignParentTop="true"
-        tools:text="You sent:"
+        tools:text="Sender:"
         android:textSize="14sp"
         android:textStyle="bold"
         android:layout_alignParentStart="true"
@@ -19,8 +21,10 @@
 
     <TextView
         android:id="@+id/txtMessage"
+
         android:text="@string/this_is_a_subtitle"
         android:textSize="17sp"
+        android:paddingBottom="2dp"
         android:layout_below="@+id/sender"
         android:layout_centerHorizontal="false"
         android:layout_width="wrap_content"
@@ -28,10 +32,10 @@
 
     <TextView
         android:id="@+id/txtDateTime"
+
         android:layout_alignParentEnd="true"
         android:text="@string/date_and_time"
         android:textSize="14sp"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
